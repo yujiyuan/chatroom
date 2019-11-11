@@ -1,21 +1,30 @@
 import React, { Component } from 'react'
-import PropTypes from "props-types";
+// import PropTypes from "props-types";
 
 //componetns
 import MessageItem from "./MessageItem"
 
+// style
+import "./Messages.scss"
 class Messages extends Component {
     renderMessageList = (dataSource)=>{
         const {selfId} = this.props;
         const messageList = dataSource.map((item) =>{
-            return <MessageItem key={item.msgId} msgType= {item.msgType} username={item.userName} isSelf={selfId===item.uid} time={item.time}></MessageItem>
+            return <MessageItem 
+                key={item.msgId} 
+                msgType= {item.msgType} 
+                userName={item.userName} 
+                isSelf={selfId===item.userId} 
+                time={item.time}
+                content={item.content}
+            />
         })
         return messageList;
     }
     render(){
         const {className,style,dataSource=[]} = this.props;
         return (
-            <div className={`messgae-container ${className}`} style={style}>
+            <div className={`message-container ${className}`} style={style}>
                 <div className="message-list-container">
                     {
                         this.renderMessageList(dataSource)

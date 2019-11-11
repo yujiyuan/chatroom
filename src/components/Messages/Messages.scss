@@ -1,0 +1,45 @@
+.message {
+  &-container {
+    padding: 5px 10px 60px;
+    font-size: 15px;
+  }
+
+  &-info {
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    &.system-message {
+      font-size: 13px;
+      color: #6f6c6c;
+      flex-direction: row;
+      justify-content: center;
+      align-items: baseline;
+    }
+    p {
+      margin-bottom: 5px;
+    }
+    .time {
+      color: #6f6c6c;
+    }
+    &.self {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      .message-content {
+        background: #a2e563;
+      }
+    }
+  }
+  &-content {
+    color: rgba(0, 0, 0, 0.870588);
+    padding: 5px 10px;
+    margin: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.117647);
+    word-break: break-all;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #f1f1f1;
+  }
+}
