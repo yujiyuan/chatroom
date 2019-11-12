@@ -1,74 +1,48 @@
-import React from 'react';
-import nanoid from "nanoid";
-import './App.scss';
-import Messages from './components/Messages/Messages';
+import React from "react";
+import "./App.scss";
+import Message from "./components/Message/Message";
+import MessageItem from "./components/MessageItem/MessageItem";
 
-class App extends React.Component {
-  state = {
-    message: '',
-    userId: "1",
-    userName: "非余",
-    dataSource:[]
+const { System, Text, Picture } = MessageItem;
+const MESSAGE_TYPE = {
+  system: System,
+  text: Text,
+  picture: Picture
+};
+const data = [
+  {
+    type: "system",
+    label: "张三加入群聊"
+  },
+  {
+    type: "text",
+    label: "在吗？",
+    userName: "张三"
+  },
+  {
+    type: "system",
+    label: "张三撤回一条消息",
+    userName: ""
+  },
+  {
+    type: "picture",
+    label: "",
+    userName: "李四",
+    imageUrl:
+      "https://up.enterdesk.com/edpic/5a/c6/ce/5ac6ceec886be0c20b10a1ba5765ec47.jpg"
+  },
+  {
+    type: "text",
+    label: "哈哈哈哈哈",
+    userName: "王五",
+    isSelf: true
   }
-  // 监控input变化
-  handleChange = (e) => {
-    this.setState({ message: e.target.value })
-  }
-  // 点击提交
-  handleClick = (e) => {
-    e.preventDefault();
-    this.sendMessage()
-  }
-  // 发送聊天信息
-  sendMessage = (e) => {
-    const {message,dataSource,userId,userName} = this.state;
-    if (message) {
-      const obj = {
-        msgType: "user", 
-        userId,
-        userName,
-        msgId:nanoid(),
-        time:this.generateTime(),
-        content: message
-      }
-      const newDataSource = [...dataSource,obj]
-      // 发送消息后清空输入框
-      this.setState({ dataSource:newDataSource,message: '' })
-    }
-    return false
-  }
-  
-  // 生成'hh-mm'格式的时间
-    generateTime() {
-      const date = new Date();
-        let hour = date.getHours(),
-            minute = date.getMinutes();
-        hour = (hour===0) ? '00' : hour;
-        minute = (minute<10) ? '0' + minute : minute;
-        return hour + ':' + minute;
-    }
-  render () {
-    return (
-      <div className="App">
-        <Messages selfId="1"
-          dataSource={this.state.dataSource}
-        />
-        <div className="input-box">
-          <div className="input">
-            <input type="text"
-              maxLength="140"
-              placeholder="按回车提交"
-              value={this.state.message}
-              onKeyPress={this.handleKeyPress}
-              onChange={this.handleChange} />
-          </div>
-          <div className="button">
-            <button type="button" onClick={this.handleClick}>提交</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+];
+function App() {
+  return (
+    <div className="App">
+      <Message types={MESSAGE_TYPE} data={data} />
+    </div>
+  );
 }
-
 export default App;

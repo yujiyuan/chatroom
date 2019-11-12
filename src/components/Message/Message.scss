@@ -1,0 +1,46 @@
+.message {
+  &-container {
+    padding: 5px 10px;
+  }
+  &-info {
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    .system-message {
+      font-size: 13px;
+      color: #6f6c6c;
+      flex-direction: row;
+      justify-content: center;
+      align-items: baseline;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .text {
+      &-left {
+        text-align: left;
+      }
+      &-right {
+        text-align: right;
+      }
+      span {
+        color: rgba(0, 0, 0, 0.870588);
+        padding: 5px 10px;
+        margin: 0;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.117647);
+        word-break: break-all;
+        border-radius: 10px;
+        display: inline-block;
+        background-color: #f1f1f1;
+        &.self {
+          background: #a2e563;
+        }
+      }
+      img {
+        max-width: 150px;
+        max-height: 150px;
+      }
+    }
+  }
+}
